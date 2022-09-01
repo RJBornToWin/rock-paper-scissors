@@ -10,24 +10,23 @@
         // scissor > paper
         // rock > scissor
         const choices = ["rock", "paper", "scissors"];
+        const TIE = 0, PLAYER = 1, COMPUTER = 2;
         function getComputerChoice() {
             const computerChoice = Math.floor(Math.random()*3) + 1;
             return choices[computerChoice-1];
         }
 
         function playRound(playerSelection, computerSelection) {
-            //0 - tie, 1 - player, 2 - computer
-
             if (playerSelection.toLowerCase() === computerSelection) {
-                return 0;
+                return TIE;
             }
             else if ((playerSelection.toLowerCase() == "paper" && computerSelection == "rock")
                     || (playerSelection.toLowerCase() == "scissor" && computerSelection == "paper")
                     || (playerSelection.toLowerCase() == "rock" && computerSelection == "scissor")) {
-                return 1;
+                return PLAYER;
             }
             
-            return 2;
+            return COMPUTER;
         }
 
         function game() {
@@ -37,11 +36,11 @@
                 const playerSelection = "rock";
                 const computerSelection = getComputerChoice();
                 let roundWinner = playRound(playerSelection, computerSelection);
-                if (roundWinner == 2) {
+                if (roundWinner == PLAYER) {
                     playerScore++;
                     console.log(`You win! ${playerSelection} beats ${computerSelection}`);
                 }
-                else if (roundWinner == 3) {
+                else if (roundWinner == COMPUTER) {
                     computerScore++;
                     console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
                 }
