@@ -33,9 +33,10 @@
             let playerScore = 0, computerScore = 0;
 
             for (let round = 0; round < 5; round++) {
-                const playerSelection = "rock";
+                
                 const computerSelection = getComputerChoice();
-                let roundWinner = playRound(playerSelection, computerSelection);
+                const playerSelection = getPlayerSelection();
+                let roundWinner = playRound(playerSelection.toLowerCase(), computerSelection);
                 if (roundWinner == PLAYER) {
                     playerScore++;
                     console.log(`You win! ${playerSelection} beats ${computerSelection}`);
@@ -50,6 +51,24 @@
             }
 
             decideWinner(playerScore, computerScore);
+        }
+
+        function getPlayerSelection() {
+            const playerSelection = prompt("Enter your choice (rock/paper/scissors) : ");
+            let validChoice = false;
+            for (let index = 0; index < choices.length; index++) {
+               if (choices[index] === playerSelection.toLowerCase()) {
+                    validChoice = true;
+               }
+            }
+
+            if (validChoice) {
+                return playerSelection;
+            }
+            else {
+                alert("Invalid choice. Defaulting to \"rock\"");
+                return "rock";
+            }
         }
 
         function decideWinner(playerScore, computerScore){
