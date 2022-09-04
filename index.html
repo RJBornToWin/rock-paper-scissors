@@ -4,87 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-        // paper > rock
-        // scissor > paper
-        // rock > scissor
-        const choices = ["rock", "paper", "scissors"];
-        const TIE = 0, PLAYER = 1, COMPUTER = 2;
-        function getComputerChoice() {
-            const computerChoice = Math.floor(Math.random()*3) + 1;
-            return choices[computerChoice-1];
-        }
-
-        function playRound(playerSelection, computerSelection) {
-            if (playerSelection.toLowerCase() === computerSelection) {
-                return TIE;
-            }
-            else if ((playerSelection.toLowerCase() == "paper" && computerSelection == "rock")
-                    || (playerSelection.toLowerCase() == "scissor" && computerSelection == "paper")
-                    || (playerSelection.toLowerCase() == "rock" && computerSelection == "scissor")) {
-                return PLAYER;
-            }
-            
-            return COMPUTER;
-        }
-
-        function game() {
-            let playerScore = 0, computerScore = 0;
-
-            for (let round = 0; round < 5; round++) {
-                
-                const computerSelection = getComputerChoice();
-                const playerSelection = getPlayerSelection();
-                let roundWinner = playRound(playerSelection.toLowerCase(), computerSelection);
-                if (roundWinner == PLAYER) {
-                    playerScore++;
-                    console.log(`You win! ${playerSelection} beats ${computerSelection}`);
-                }
-                else if (roundWinner == COMPUTER) {
-                    computerScore++;
-                    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
-                }
-                else {
-                    console.log(`It's a tie! ${playerSelection} vs ${computerSelection}`);
-                }
-            }
-
-            decideWinner(playerScore, computerScore);
-        }
-
-        function getPlayerSelection() {
-            const playerSelection = prompt("Enter your choice (rock/paper/scissors) : ");
-            let validChoice = false;
-            for (let index = 0; index < choices.length; index++) {
-               if (choices[index] === playerSelection.toLowerCase()) {
-                    validChoice = true;
-               }
-            }
-
-            if (validChoice) {
-                return playerSelection;
-            }
-            else {
-                alert("Invalid choice. Defaulting to \"rock\"");
-                return "rock";
-            }
-        }
-
-        function decideWinner(playerScore, computerScore){
-            if (playerScore > computerScore) {
-                console.log("You win!");
-            }
-            else if (computerScore > playerScore) {
-                console.log("You Lose!");
-            }
-            else {
-                console.log("It's a tie!");
-            } 
-        }
-    </script>
+    <title>Rock Paper Scissors</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">
+            <h3>Rock Paper Scissors</h3>
+        </div>
+        <div class="main">
+            <div class="game">
+                <button class="btn-rps" id="rock" value="rock" onclick="game('rock')">Rock</button>
+                <button class="btn-rps" id="paper" value="paper" onclick="game('paper')">Paper</button>
+                <button class="btn-rps" id="scissors" value="scissors" onclick="game('scissors')">Scissors</button>
+            </div>
+            <div class="score">
+                <p>Player score: <span id="pscore">0</span></p>
+                <p>Computer score: <span id="cscore">0</span></p>
+                <p id="round-result"></p>
+                <p id="game-result"></p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>For Odin Project Curriculum</p>
+        </div>
+    </div>
 </body>
 </html>

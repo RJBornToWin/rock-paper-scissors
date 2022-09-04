@@ -1,0 +1,50 @@
+:root {
+    --primary-color : rgb(182, 183, 183);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.header, .footer {
+    background-color: var(--primary-color);
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+}
+
+.game {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.btn-rps {
+    font-size: x-large;
+    font-weight: bold;
+    width: 200px;
+    height: 200px;
+    background-color: var(--primary-color);
+    color: black;
+    border-radius: 5px;
+}
+
+.score {
+    margin: 30px;
+}
